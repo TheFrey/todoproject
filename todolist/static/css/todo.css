@@ -1,0 +1,38 @@
+body {
+    background: #e8e8e8;
+}
+
+#content {
+    position: absolute;
+    top: 60px;
+    width: 75%;
+}
+h1 {
+    background: #006b1b;
+    color: #e35f5f;
+}
+#sidebar {
+    background: aliceblue;
+
+    position: absolute;
+    top: 60px;
+    right: 20px;
+    width: 20%;
+}
+
+#information {
+    border: 5px solid darkblue;
+}
+
+#login {
+    border: 5px solid darkblue;
+    text-align-all: center;
+}
+
+.content {
+    border: 3px solid black;
+}
+
+#searchbar {
+    border: 5px solid darkblue;
+}

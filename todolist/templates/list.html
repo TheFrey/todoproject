@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}ToDo List{% endblock %}
+{% block content %}<script>
+    function popupfunc(link) {
+
+        window.open(link,"popup_page","status=1,height=200,width=300,toolbar=0,resizeable=0")
+    }
+
+
+</script>
+    <h1>My ToDo List</h1>
+    <div id="content">
+    {% for todo_item in items %}
+        <div style="background-color: {{ todo_item.urgency }}">
+            <p>{{ todo_item.text }}</p>
+            <p>{{ todo_item.date }}</p>
+            <p><a type="button" onclick="popupfunc('{{ todo_item.del_item_url }}')" href="" >Delete</a>
+                <a type="button" onclick="popupfunc('{{ todo_item.modify_url }}')" href="" >Modify</a></p>
+            <a type="button" onclick="popupfunc('{{ todo_item.add_sub_item_url }}')" href="" >Add sub item</a>
+        {% if sub_item %}
+        <ul>
+        {% for s_item in sub_item %}
+
+        {% if s_item.item == todo_item %}
+
+            <li>{{ s_item.text }}</li>
+
+        {% endif %}
+        {% endfor %}
+        </ul>
+        {% endif %}
+        </div>
+
+        <br/>
+   {% endfor %}
+    </div>
+    <div id="sidebar">
+    <h2>Urgency</h2>
+        <ul>
+            <li><a href="{%  url "todo_list" %}">All</a></li>
+            {% for url in urg_url %}
+                <li><a href="{{url}}">{{ url }}</a></li>
+            {% endfor %}
+        </ul>
+    <h2>Add a new ToDo Item</h2>
+            <form action="." method="post">
+                {{ form.as_p }}
+                {% csrf_token %}
+            <p><input type="submit" value="Add item"><input type="reset" value="reset"></p>
+            </form>
+    <a href="{%  url "logout" %}">Logout</a>
+    </div>
+{% endblock %}

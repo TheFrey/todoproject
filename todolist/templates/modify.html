@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+{% endblock %}
+{% block content %}
+    <h2>Modify item</h2>
+   <form action="." method="post">
+      {% for field in form %}
+                    <div class="row">
+                    {{field.label_tag}}
+                    <div class="col-md-10">{{field}}</div>
+                    </div>
+      {% endfor %}
+    {% csrf_token %}
+      <input type="submit" value="Add">
+    </form>
+{% endblock %}
